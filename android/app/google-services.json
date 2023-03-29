@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "252095997769",
+    "project_id": "ggnotes-lol-project",
+    "storage_bucket": "ggnotes-lol-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252095997769:android:37f962bab81be27b7e9c98",
+        "android_client_info": {
+          "package_name": "myat.com.ggnotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "252095997769-3ta8g92p728a3giif1msjca31epu6hqq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-OKRn-yARR8uvj3IgmB1p6MsqoWCy5Xs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "252095997769-3ta8g92p728a3giif1msjca31epu6hqq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
