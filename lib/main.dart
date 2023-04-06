@@ -5,7 +5,8 @@ import 'package:ggnotes/firebase_options.dart';
 import 'package:ggnotes/views/login_view.dart';
 import 'package:ggnotes/views/register_view.dart';
 import 'package:ggnotes/views/verifyEmail_view.dart';
-import 'dart:developer' as devtools show log;
+
+import 'constants/routes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,8 +18,10 @@ void main() {
     ),
     home: const HomePage(),
     routes: {
-      '/login': (context) => const LoginView(),
-      '/register': (context) => const RegisterView(),
+      loginRoute: (context) => const LoginView(),
+      registerRoute: (context) => const RegisterView(),
+      notesRoute: (context) => const NotesView(),
+      verifyEmailRoute: (context) => const VerifyEmailView(),
     },
   ));
 }
@@ -77,7 +80,7 @@ class _NotesViewState extends State<NotesView> {
                   if (shouldLogOut) {
                     await FirebaseAuth.instance.signOut();
                     Navigator.of(context)
-                        .pushNamedAndRemoveUntil('/login', (_) => false);
+                        .pushNamedAndRemoveUntil(loginRoute, (_) => false);
                   }
                   break;
               }
@@ -86,14 +89,14 @@ class _NotesViewState extends State<NotesView> {
               return const [
                 PopupMenuItem<MenuAction>(
                   value: MenuAction.logout,
-                  child: Text("Log In"),
+                  child: Text("Log out"),
                 )
               ];
             },
           )
         ],
       ),
-      body: const Text("Hello World"),
+      body: const Text("Hello MotherF..ker"),
     );
   }
 }
@@ -103,19 +106,19 @@ Future<bool> showLogOutDialog(BuildContext context) {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text("LogOut"),
-          content: const Text("Are u sure u want to logout?,"),
+          title: const Text("Log Out"),
+          content: const Text("Logout? Really Bro???"),
           actions: [
             TextButton(
                 onPressed: () {
                   Navigator.of(context).pop(false);
                 },
-                child: const Text("Cancel")),
+                child: const Text("Noooo!")),
             TextButton(
                 onPressed: () {
                   Navigator.of(context).pop(true);
                 },
-                child: const Text("Log Out"))
+                child: const Text("Fking Out"))
           ],
         );
       }).then((value) => value ?? false);

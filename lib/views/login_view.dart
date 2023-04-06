@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
-import 'package:ggnotes/firebase_options.dart';
+import 'package:ggnotes/constants/routes.dart';
+
+import '../utilities/show_error_dialog.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -54,16 +56,24 @@ class _LoginViewState extends State<LoginView> {
               final email = _email.text;
               final password = _password.text;
               try {
-                final userCredential = await FirebaseAuth.instance
-                    .signInWithEmailAndPassword(
-                        email: email, password: password);
-                print(userCredential);
+                await FirebaseAuth.instance.signInWithEmailAndPassword(
+                  email: email,
+                  password: password,
+                );
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  notesRoute,
+                  (route) => false,
+                );
               } on FirebaseAuthException catch (e) {
                 if (e.code == 'user-not-found') {
-                  print("User not found");
+                  await showErrorDialog(context, "User not found, Very Sad");
                 } else if (e.code == 'wrong-password') {
-                  print("Wrong Password");
+                  await showErrorDialog(context, "Wrong Password bro, u dumb?");
+                } else {
+                  await showErrorDialog(context, "Error : ${e.code}");
                 }
+              } catch (e) {
+                await showErrorDialog(context, e.toString());
               }
             },
             child: const Text("Login"),
@@ -71,7 +81,7 @@ class _LoginViewState extends State<LoginView> {
           TextButton(
               onPressed: () {
                 Navigator.of(context)
-                    .pushNamedAndRemoveUntil('/register', (route) => false);
+                    .pushNamedAndRemoveUntil(registerRoute, (route) => false);
               },
               child: const Text("Not Registered? Register here!"))
         ],
